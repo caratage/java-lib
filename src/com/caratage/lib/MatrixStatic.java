@@ -1,7 +1,7 @@
 package com.caratage.lib;
 /*
-* @author uweish2s
-*/
+ * @author uweish2s
+ */
 
 import java.util.Scanner;
 

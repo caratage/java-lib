@@ -12,7 +12,7 @@ import java.util.Map.Entry;
  */
 
 public class GraphSearch<T> {
-	
+
 	private static final int INFINITY = Integer.MAX_VALUE;
 	private Map<Vertex<T>, Boolean> marked;
 	private Map<Vertex<T>, Vertex<T>> edgeTo;
@@ -21,14 +21,14 @@ public class GraphSearch<T> {
 	private Map<Vertex<T>, Integer> timeFinished; // f
 	private Map<Vertex<T>, Integer> timeVisited; // b
 	private int time;
-	
+
 	public void BreathFirstSearch(Graph<T> g, Vertex<T> start) {
 		Set<Entry<T, Vertex<T>>> graph = g.getVertexMap().entrySet();
 		marked = new HashMap<>();
 		distTo = new HashMap<>();
 		edgeTo = new HashMap<>();
 		timeVisited = new HashMap<>();
-		
+
 		for (Map.Entry<T, Vertex<T>> vertex : graph) {
 			distTo.put(vertex.getValue(), INFINITY);
 			marked.put(vertex.getValue(), false);
@@ -40,7 +40,7 @@ public class GraphSearch<T> {
 			}
 		}
 	}
-	
+
 	// BFS from single source vertex
 	private void BreathFirstSearchVisit(Vertex<T> start) {
 		LinkedList<Vertex<T>> q = new LinkedList<>();
@@ -62,14 +62,14 @@ public class GraphSearch<T> {
 			}
 		}
 	}
-	
+
 	public void DepthFirstSearch(Graph<T> g) {
 		Set<Entry<T, Vertex<T>>> graph = g.getVertexMap().entrySet();
 		marked = new HashMap<>();
 		timeDiscovered = new HashMap<>(); // d
 		timeFinished = new HashMap<>(); // f
 		// timeVisited = new HashMap<>();
-		
+
 		for (Map.Entry<T, Vertex<T>> vertex : graph) {
 			marked.put(vertex.getValue(), false);
 		}
@@ -80,7 +80,7 @@ public class GraphSearch<T> {
 			}
 		}
 	}
-	
+
 	// DFS from single source vertex
 	private void DepthFirstSearchVisit(Vertex<T> current) {
 		marked.put(current, true);
@@ -97,7 +97,7 @@ public class GraphSearch<T> {
 		// TODO: DFSAnnotate
 		// DepthFirstSearchAnnotateEdges(current);
 	}
-	
+
 	/*private void DepthFirstSearchAnnotateEdges(Vertex<T> w) {
 		// TODO: implement annotation properly
 		for (Edge<T> edge : w.getEdges()) {
@@ -114,13 +114,13 @@ public class GraphSearch<T> {
 			}	
 		}
 	}*/
-	
+
 	public void topologicalSort(Graph<T> g) {
 		Set<Entry<T, Vertex<T>>> graph = g.getVertexMap().entrySet();
 		marked = new HashMap<>();
 		Stack<Vertex<T>> stack = new Stack<>();
 		Vertex<T> current = null;
-		
+
 		for (Map.Entry<T, Vertex<T>> vertex : graph) {
 			marked.put(vertex.getValue(), false);
 		}
@@ -133,9 +133,9 @@ public class GraphSearch<T> {
 		while (!stack.empty()) {
 			System.out.print(stack.pop() + " ");
 		}
-		
+
 	}
-	
+
 	private void topologicalSortVisit(Vertex<T> current, Stack<Vertex<T>> stack) {
 		marked.put(current, true);
 		for (Edge<T> edge : current.getEdges()) {
@@ -147,32 +147,32 @@ public class GraphSearch<T> {
 		}
 		stack.push(current);
 	}
-	
+
 	public boolean hasPathTo(Graph<T> g, Vertex<T> destination) {
 		validateVertex(g, destination);
 		return marked.get(destination);
 	}
-	
+
 	public int distTo(Vertex<T> destination) {
 		//validateVertex(g, destination);
 		return distTo.get(destination);
 	}
-	
+
 	public int timeVisited(Vertex<T> vertex) {
 		//validateVertex(g, destination);
 		return timeVisited.get(vertex);
 	}
-	
+
 	public int timeDiscovered(Vertex<T> vertex) {
 		//validateVertex(g, destination);
 		return timeDiscovered.get(vertex);
 	}
-	
+
 	public int timeFinished(Vertex<T> vertex) {
 		//validateVertex(g, destination);
 		return timeFinished.get(vertex);
 	}
-	
+
 	public Iterable<Vertex<T>> pathTo(Graph<T> g, Vertex<T> destination) {
 		validateVertex(g, destination);
 		if (!hasPathTo(g, destination)) {
@@ -186,13 +186,13 @@ public class GraphSearch<T> {
 		path.push(current);
 		return path;
 	}
-	
+
 	public void validateVertex(Graph<T> g, Vertex<T> vertex) {
 		if (!g.containsVertex(vertex.getValue())) {
 			throw new IllegalArgumentException("The vertex " + vertex + " seems not to be present in this graph.");
 		}
 	}
-	
+
 	public String toString() {
 		String s = "";
 		if (timeFinished != null ) {
@@ -225,5 +225,5 @@ public class GraphSearch<T> {
 		}
 		return s;
 	}
-	
+
 }

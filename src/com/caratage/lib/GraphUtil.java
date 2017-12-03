@@ -3,12 +3,12 @@ package com.caratage.lib;
 import java.util.Map;
 
 public class GraphUtil {
-	
+
 	/**
-     * Converts an adjacency list to a graph object.
-     * @param adjList	the int array representing an adjacency list
-     * @return  			returns a Graph<Integer> object
-     */
+	 * Converts an adjacency list to a graph object.
+	 * @param adjList	the int array representing an adjacency list
+	 * @return  			returns a Graph<Integer> object
+	 */
 	public static Graph<Integer> convertAdjListToGraph(int[][] adjList) {
 		Graph<Integer> result = new Graph<>();
 		for (int i = 0; i < adjList.length; ++i) {
@@ -21,12 +21,12 @@ public class GraphUtil {
 		}
 		return result;
 	}
-	
+
 	/**
-     * Converts an adjacency matrix to a graph object.
-     * @param m	the adjacency matrix
-     * @return returns a new graph
-     */
+	 * Converts an adjacency matrix to a graph object.
+	 * @param m	the adjacency matrix
+	 * @return returns a new graph
+	 */
 	public static Graph<Integer> convertAdjMatrixToGraph(Matrix m) {
 		Graph<Integer> result = new Graph<>();
 		for (int i = 0; i < m.numRows(); ++i) {
@@ -47,16 +47,16 @@ public class GraphUtil {
 		}
 		return result;
 	}
-	
+
 	/**
-     * Converts a graph object to an adjacency list
-     * @param g the graph to be converted
-     * @return returns an int[][] representing the graphs adjacency list
-     */
+	 * Converts a graph object to an adjacency list
+	 * @param g the graph to be converted
+	 * @return returns an int[][] representing the graphs adjacency list
+	 */
 	public static int[][] convertGraphToAdjList(Graph<Integer> g) {
 		int numV = g.countVertices();
 		int[][] adjList = new int[numV][];
-		
+
 		for (Map.Entry<Integer, Vertex<Integer>> v : g.getVertexMap().entrySet()) {
 			Vertex<Integer> current = v.getValue();
 			int numE = current.getEdges().size();
@@ -68,12 +68,12 @@ public class GraphUtil {
 		}
 		return adjList;
 	}
-	
+
 	/**
-     * Converts a graph object to an adjacency matrix
-     * @param g the graph to be converted
-     * @return returns a matrix representing the graphs adjacency matrix
-     */
+	 * Converts a graph object to an adjacency matrix
+	 * @param g the graph to be converted
+	 * @return returns a matrix representing the graphs adjacency matrix
+	 */
 	public static Matrix convertGraphToAdjMatrix(Graph<Integer> g) {
 		// TODO: incorrect logic
 		int numV = g.countVertices();
