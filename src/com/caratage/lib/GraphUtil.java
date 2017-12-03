@@ -78,15 +78,10 @@ public class GraphUtil {
 		// TODO: incorrect logic
 		int numV = g.countVertices();
 		Matrix m = new Matrix(numV);
-		m.setAll(0);
-		
-		for (Map.Entry<Integer, Vertex<Integer>> v : g.getVertexMap().entrySet()) {
-			Vertex<Integer> current = v.getValue();
-			int numE = current.getEdges().size();
-			for (int i = 0; i < numV; ++i) {
-				for (int j = 0; j < numE; ++j) {
-					m.setPos(i, j, current.getValue());
-				}
+		for (int i = 0; i < numV; ++i) {
+			for (int j = 0; j < numV; ++j) {
+				int v = g.getVertex(i).hasEdge(g.getVertex(j)) ? 1 : 0;
+				m.setPos(i, j, v);
 			}
 		}
 		return m;

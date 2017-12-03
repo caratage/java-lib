@@ -91,27 +91,11 @@ public class Graph<T> {
     			for (Edge<T> e : current.getEdges()) {
     				if (e.getOrigin() == current) {
     					s += " ";
-    					s += e.getDestination();
-    					
-    					// s += " Type: " + e.getType();
-    					//s += " Parent: " + e.toVertex();
-    					
+    					s += e.getDestination();    					
     				}
     			}
     			s += "\n";
     		}
     		return s;
     }
-    
-    // TODO: output graph as adjacency matrix
-    /*public byte[][] toAdjacencyMatrix() {
-    		int n = countVertices();
-    		byte[][] adjacencyMatrix = new byte[n][n];
-    		for (int i = 0; i < n; ++i) {
-    			for (int j = 0; j < n; ++j) {
-    				adjacencyMatrix[i][j] = getVertex(i).hasEdgeTo(j) ? 1 : 0;
-    			}
-    		}
-    		return adjacencyMatrix;
-    }*/
 }
