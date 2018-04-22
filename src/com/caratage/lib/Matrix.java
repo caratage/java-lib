@@ -182,7 +182,9 @@ public class Matrix {
 				for (int k = 0; k < a.numCols(); ++k) {
 					v += a.getPos(i, k) * b.getPos(k, j);
 					c.setPos(i, j, v);
+					
 				}
+				v = 0;
 			}
 		}
 		return c;
@@ -197,8 +199,9 @@ public class Matrix {
 			invalidPower();
 		}
 		Matrix c = new Matrix(m.numRows());
-		for (int n = 1; n < p; ++n) {
+		for (int n = 1; n <= p; ++n) {
 			c = multiplyMatrix(m, m);
+			
 		}
 		return c;
 	}
